@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Gallery</title>
+	<style type="text/css">
+		#gallery {
+			display: flex;
+			justify-content: center;
+			flex-wrap: wrap;
+			margin: 0 auto;
+			max-width: 1080px;
+		}
+		a {
+			display: flex;
+			align-items: center;
+			margin: 25px;
+			height: 260px;
+			border-radius: 5px;
+			box-shadow: 0px 3px 7px #ccc;
+		}
+		h1 {
+			text-align: center;
+			font-weight: normal;
+			font-family: serif;
+		}
+	</style>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+	<h1>Gallery</h1>
+	<div id="gallery"></div>
+	<script type="text/javascript">
+		let teamids = [812951, 693465, 825018];
+		let anchor = document.getElementById('gallery')
+		for (id of teamids) {
+			let a = document.createElement('a');
+			a.setAttribute('href', 'http://hattrick.org/goto.ashx?path=/Club/?TeamID=' + id);
+			a.setAttribute('target', '_blank');
+			let img = document.createElement('img');
+			img.setAttribute('src', id + '.png');
+			anchor.appendChild(a).appendChild(img);
+		}
+	</script>
+</body>
+</html>
