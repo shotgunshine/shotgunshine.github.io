@@ -1,0 +1,103 @@
+{
+	"rules": {
+		"pointSystem": [25,18,15,12,10,8,6,4,2,1],
+		"eventRaces": 2,
+		"settings": [
+			{
+				"desc": "Qualifying session",
+				"value": "10 minutes"
+			}, {
+				"desc": "Race distance",
+				"value": "100 km x 2 (reverse grid)"
+			}, {
+				"desc": "Tyre wear",
+				"value": "200%"
+			}, {
+				"desc": "Fuel consumption",
+				"value": "200%"
+			}, {
+				"desc": "Damage",
+				"value": "50%"
+			}, {
+				"desc": "Starting procedure",
+				"value": "Standing start"
+			}
+		]
+	},
+	"events": [
+		{
+			"date": "24‑Apr",
+			"flag": "it",
+			"laps": 18,
+			"track": "Monza",
+			"report": "#"
+		}, {
+			"date": "8‑May",
+			"laps": 21,
+			"track": "Imola",
+			"report": "#",
+			"flag": "europeanunion"
+		}, {
+			"date": "29‑May",
+			"flag": "mc",
+			"laps": 30,
+			"track": "Monaco",
+			"report": "#"
+		}, {
+			"date": "5‑Jun",
+			"flag": "fr",
+			"laps": 17,
+			"track": "Paul Ricard",
+			"report": "#"
+		}, {
+			"date": "19‑Jun",
+			"flag": "nl",
+			"laps": 24,
+			"track": "Zandvoort",
+			"report": "#"
+		}, {
+			"date": "10‑Jul",
+			"flag": "hu",
+			"laps": 23,
+			"track": "Hungaroring",
+			"report": "#"
+		}, {
+			"date": "30‑Jul",
+			"flag": "be",
+			"laps": 14,
+			"track": "Spa",
+			"report": "#"
+		}, {
+			"date": "11‑Sep",
+			"flag": "at",
+			"laps": 23,
+			"track": "Red Bull Ring",
+			"report": "#"
+		}, {
+			"date": "16‑Oct",
+			"flag": "es",
+			"laps": 22,
+			"track": "Catalunya",
+			"report": "#"
+		}, {
+			"date": "23‑Oct",
+			"flag": "it",
+			"laps": 19,
+			"track": "Mugello",
+			"report": "#"
+		}
+	],
+	"drivers": [
+		{
+			"name": "Beganovic",
+			"flag": "se",
+			"car": "Prema Racing #18",
+ 			"results": [1,"-",1,2,2,1,2,2,4,3,7,16,1,3,4,2,11,10,4,3]
+		}, {
+			"name": "Mini",
+			"flag": "it",
+			"car": "ART Grand Prix #46",
+ 			"results": [15,3,28,1,4,3,5,1,3,2,2,2,"DSQ",6,7,4,5,7,"DNF",1]
+		}
+	]
+}

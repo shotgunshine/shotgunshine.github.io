@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Formula Regional European Championship by Alpine is a multi-event, Formula Regional open-wheel single seater motor racing championship held across Europe. The championship features a mix of professional and amateur drivers, competing in Formula Regional cars that conform to the FIA Formula Regional regulations for the championship.">
+	<title>Formula F</title>
+	<!-- https://github.com/legacy-icons/famfamfam-flags -->
+	<link href="/res/famfamfam-flags.min.css" rel="stylesheet">
+	<!-- https://getbootstrap.com/docs/5.1/getting-started/introduction/ -->
+	<link href="/res/bootstrap.min.css" rel="stylesheet">
+	<link href="/res/bootstrap-icons.min.css" rel="stylesheet">
+	<script src="/res/bootstrap.bundle.min.js" async></script>
+	<style type="text/css">
+		@font-face {
+			font-family: 'Titillium Web';
+			font-style: normal;
+			font-weight: 400;
+			src: url(/res/font.woff2);
+		}
+		body {
+			font-family: 'Titillium Web', sans-serif;
+		}
+		th, td {
+			vertical-align: middle;
+			min-width: 38px;
+			white-space: nowrap;
+			font-weight: normal;
+			background-clip: padding-box;
+		}
+		.sticky {
+			position: sticky;
+			left: 0;
+		}
+		#expandable {
+			overflow-y: hidden;
+			max-height: 452px;
+		}
+		#expandable[expanded] {max-height: none;}
+		[flipped] {transform: rotate(180deg);}
+	</style>
+</head>
+<body>
+<header class="navbar navbar-expand-md navbar-light sticky-top bg-body border-bottom">
+	<nav class="container">
+		<a href="/" class="navbar-brand">Formula F</a>
+		<button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="nav"><ul class="navbar-nav me-auto text-center">
+			<li class="nav-item"><a class="nav-link text-dark" href="#" data-bs-toggle="modal" data-bs-target="#server"><i class="bi bi-hdd"></i> Join Server</a></li>
+			<li class="nav-item"><a class="nav-link text-dark" href="#" target="_blank"><i class="bi bi-stopwatch"></i> Live Timing</a></li>
+			<li class="nav-item"><a class="nav-link text-dark" href="#" target="_blank"><i class="bi bi-chat"></i> Discord</a></li>
+		</ul></div>
+	</nav>
+</header>
+<div class="modal fade" id="server"><div class="modal-dialog"><div class="modal-content">
+	<div class="modal-header">
+		<h5 class="modal-title">Server details</h5>
+		<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+	</div>
+	<div class="modal-body">
+		<dl class="row">
+			<dd class="col-5 col-md-3">Address</dd>
+			<dd class="col-7 col-md-9">127.0.0.1:69420</dd>
+			<dd class="col-5 col-md-3">Password</dd>
+			<dd class="col-7 col-md-9">password</dd>
+			<dd class="col-5 col-md-3">Location</dd>
+			<dd class="col-7 col-md-9"><span class="flag de d-inline-block"></span> Frankfurt</dd>
+		</dl>
+		<a href="https://acstuff.ru/s/q:race/online/join?ip=123&httpPort=456" target="_blank" role="button" class="btn btn-dark px-4 float-end">Join <i class="bi bi-arrow-right-circle"></i></a>
+	</div>
+</div></div></div>
+<main class="container mt-3 mb-5">
+	<h1>Welcome</h1>
+	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	<select class="form-select float-end w-auto py-1" id="seasons"></select>
+	<h2>Standings</h2>
+	<div class="table-responsive" id="expandable">
+		<table class="table table-hover mb-0" id="standings"><thead><tr></tr></thead><tbody></tbody></table>
+	</div>
+	<div class="d-flex justify-content-center">
+		<a class="p-2 text-dark" role="button" onclick="document.getElementById('expandable').toggleAttribute('expanded'); this.toggleAttribute('flipped');"><i class="bi bi-chevron-down"></i></a>
+	</div>
+	<p id="scoring"></p>
+	<h2>Calendar</h2>
+	<div class="table-responsive">
+		<table class="table table-hover" id="calendar"><thead><tr><th width="38">Rnd</th><th>Track</th><th>Date</th><th>Laps</th><th></th></tr></thead><tbody></tbody></table>
+	</div>
+	<h2>Rules</h2>
+	<dl class="row" id="settings"></dl>
+</main>
+<script type="text/javascript">
+	const countryFlag = id => id ? `<span class="flag ${id} d-inline-block"></span> ` : "";
+	const colorKey = pos => pos < 4 ? (pos < 3 ? (pos < 2 ? "#EEB" : "#EEE") : "#DCB") : "#DED";
+	const button = (link, text) => `<a role="button" href="${link}" target="_blank">${text}</a>`;
+
+	function printSeason(season) {
+		fetch(season.path).then(response => response.json()).then((data) => {
+			let table = document.getElementById("standings");
+			let thead = document.createElement("tr");
+			thead.innerHTML += '<th width="38">Pos</th>';
+			thead.innerHTML += '<th class="sticky bg-body">Driver</th>';
+			thead.innerHTML += '<th class="d-none d-md-table-cell">Car</th>';
+			thead.innerHTML += '<th>Points</th>';
+			const small = "d-none d-md-table-cell text-center px-0";
+			data.events.forEach((e,i) => {
+				thead.innerHTML += `<th colspan=${data.rules.eventRaces} class="${small}">${i+1}</th>`;
+			});
+			table.querySelector("tr").replaceWith(thead);
+			let p = data.rules.pointSystem;
+			document.getElementById("scoring").innerHTML = `Point scoring system: ${p.join(", ")}.`;
+			data.drivers.forEach(d => {
+				d.pts = d.results.filter(r => r>0 && r<=p.length).reduce((a,b) => a+p[b-1], 0)
+			});
+			data.drivers.sort((b,a) => a.pts - b.pts);
+			let tbody = document.createElement("tbody");
+			let prev;
+			data.drivers.forEach((d,i) => {
+				let row = document.createElement("tr");
+				row.innerHTML += `<td class="text-center">${d.pts===prev ? "=" : i+1}</td>`;	
+				row.innerHTML += `<td class="sticky bg-body">${countryFlag(d.flag)}${d.name}</td>`;
+				row.innerHTML += `<td class="d-none d-md-table-cell">${d.car}</td>`;
+				row.innerHTML += `<td>${d.pts}</td>`;
+				for (let j = 0; j < data.rules.eventRaces * data.events.length; j++) {
+					row.innerHTML +=`<td class="${small}">${d.results[j] ?? ""}</td>`;
+					if (Number.isInteger(d.results[j]) && d.results[j]<=p.length) {
+						row.lastChild.style.background = colorKey(d.results[j]);
+					}
+				}
+				tbody.appendChild(row);
+				prev = d.pts;
+			});
+			table.querySelector("tbody").replaceWith(tbody);
+			//
+			let calendar = document.createElement("tbody");
+			let csvIcon = `<i class="bi bi-filetype-csv"></i>`;
+			data.events.forEach((e,i) => {
+				let row = document.createElement("tr");
+				row.innerHTML += `<td class="text-center">${i+1}</td>`;
+				row.innerHTML += `<td>${countryFlag(e.flag)}${e.track}</td>`;
+				row.innerHTML += `<td>${e.date}</td>`;
+				row.innerHTML += `<td>${e.laps}</td>`;
+				row.innerHTML += `<td>${e.report ? button(e.report, csvIcon) : ""}</td>`;
+				calendar.appendChild(row);
+			});
+			document.getElementById("calendar").querySelector("tbody").replaceWith(calendar);
+			//
+			let settings = document.createElement("dl");
+			settings.setAttribute("class", "row");
+			settings.setAttribute("id", "settings");
+			for (s of data.rules.settings) {
+				settings.innerHTML += `<dd class="col-6 col-md-3">${s.desc}</dd>`;
+				settings.innerHTML += `<dd class="col-6 col-md-9">${s.value}</dd>`;
+			}
+			document.getElementById("settings").replaceWith(settings);
+		});
+		document.title = `${season.label} – Formula F`;
+		for (o of document.getElementById("seasons").options) o.selected = o.textContent==season.label;
+	}
+
+	const seasons = {
+		2023: {label: "2023 Season", path: "/data/season2.json"},
+		2022: {label: "2022 Season", path: "/data/season.json"}
+	};
+
+	let select = document.getElementById("seasons");
+	for (s in seasons) {
+		select.innerHTML += `<option value="${s}">${seasons[s].label}</option>`;
+	}
+	select.addEventListener("change", event => {
+		printSeason(seasons[event.target.value]);
+		history.pushState({}, null, "/season/" + event.target.value);
+	});
+
+	["load", "popstate"].forEach(event => {
+		window.addEventListener(event, deed => {
+			let path = document.location.pathname.split("/");
+			if (path[1] == "season" && seasons.hasOwnProperty(path[2])) {
+				printSeason(seasons[path[2]]);
+			} else {
+				printSeason(seasons[Math.max(...Object.keys(seasons))]);
+			}
+		});
+	});
+</script>
+</body>
+</html>

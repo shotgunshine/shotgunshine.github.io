@@ -1,0 +1,194 @@
+{
+	"rules": {
+		"pointSystem": [10,8,6,4,2,1],
+		"eventRaces": 1,
+		"settings": [
+			{
+				"desc": "Qualifying duration",
+				"value": "15 minutes"
+			}, {
+				"desc": "Race distance",
+				"value": "100 km"
+			}, {
+				"desc": "Tyre wear rate",
+				"value": "200%"
+			}, {
+				"desc": "Fuel consumption",
+				"value": "200%"
+			}, {
+				"desc": "Damage",
+				"value": "0%"
+			}, {
+				"desc": "Starting procedure",
+				"value": "rolling start"
+			}
+		]
+	},
+	"events": [
+		{
+			"date": "23‑Apr",
+			"laps": 21,
+			"flag": "it",
+			"track": "Imola",
+			"report": "#"
+		}, {
+			"date": "21‑May",
+			"laps": 22,
+			"flag": "es",
+			"track": "Catalunya"
+		}, {
+			"date": "18‑Jun",
+			"laps": 23,
+			"flag": "hu",
+			"track": "Hungaroring"
+		}, {
+			"date": "1‑Jul",
+			"laps": 14,
+			"flag": "be",
+			"track": "Spa-Francorchamps"
+		}, {
+			"date": "9‑Jul",
+			"laps": 19,
+			"flag": "it",
+			"track": "Mugello"
+		}, {
+			"date": "23‑Jul",
+			"laps": 17,
+			"flag": "fr",
+			"track": "Paul Ricard"
+		}, {
+			"date": "10‑Sep",
+			"laps": 23,
+			"flag": "at",
+			"track": "Red Bull Ring"
+		}, {
+			"date": "17‑Sep",
+			"laps": 18,
+			"flag": "it",
+			"track": "Monza"
+		}, {
+			"date": "15‑Oct",
+			"laps": 24,
+			"flag": "nl",
+			"track": "Zandvoort"
+		}, {
+			"date": "22‑Oct",
+			"laps": 22,
+			"flag": "de",
+			"track": "Hockenheimring"
+		}
+	],
+	"drivers": [
+		{
+			"name": "Giusti",
+			"flag": "fr",
+			"car": "G4 Racing #3",
+			"results": [7,"DNF"]
+		}, {
+			"name": "Belov",
+			"flag": "ru",
+			"car": "G4 Racing #30",
+			"results": [10,"DNF"]
+		}, {
+			"name": "Bilinski",
+			"flag": "pl",
+			"car": "Trident #4",
+			"results": ["DNF","DNF"]
+		}, {
+			"name": "Tangavelou",
+			"flag": "fr",
+			"car": "Trident #43",
+			"results": [16,13]
+		}, {
+			"name": "Bohra",
+			"flag": "sg",
+			"car": "Trident #47",
+			"results": [9,3]
+		}, {
+			"name": "Fluxá",
+			"flag": "es",
+			"car": "Prema Racing #7",
+			"results": [4,"DNF"]
+		}, {
+			"name": "Câmara",
+			"flag": "br",
+			"car": "Prema Racing #8",
+			"results": [3,"DNF"]
+		}, {
+			"name": "Antonelli",
+			"flag": "it",
+			"car": "Prema Racing #12",
+			"results": [2,"DNF"]
+		}, {
+			"name": "Wurz",
+			"flag": "at",
+			"car": "ART Grand Prix #9",
+			"results": [15,10]
+		}, {
+			"name": "van Hoepen",
+			"flag": "nl",
+			"car": "ART Grand Prix #18",
+			"results": [11,12]
+		}, {
+			"name": "Amand",
+			"flag": "fr",
+			"car": "ART Grand Prix #25",
+			"results": [18,8]
+		}, {
+			"name": "Dufek",
+			"flag": "ch",
+			"car": "Van Amersfoort #13",
+			"results": [8,"DNF"]
+		}, {
+			"name": "Haverkort",
+			"flag": "nl",
+			"car": "Van Amersfoort #27",
+			"results": [5,1]
+		}, {
+			"name": "Koolen",
+			"flag": "nl",
+			"car": "Van Amersfoort #68",
+			"results": [19,11]
+		}, {
+			"name": "Meguetounif",
+			"flag": "fr",
+			"car": "MP Motorsport #15",
+			"results": [17,14]
+		}, {
+			"name": "van 't Hoff",
+			"flag": "nl",
+			"car": "MP Motorsport #17",
+			"results": [14,7]
+		}, {
+			"name": "Bernier",
+			"flag": "fr",
+			"car": "MP Motorsport #26",
+			"results": [12,4]
+		}, {
+			"name": "Stenshorne",
+			"flag": "no", 
+			"car": "R-ace GP #34",
+			"results": [1,2]
+		}, {
+			"name": "Tramnitz",
+			"flag": "de", 
+			"car": "R-ace GP #77",
+			"results": [6,"DNF"]
+		}, {
+			"name": "Zagazeta",
+			"flag": "pe", 
+			"car": "R-ace GP #88",
+			"results": [13,5]
+		}, {
+			"name": "Ramos",
+			"flag": "mx", 
+			"car": "RPM #65",
+			"results": [20,6]
+		}, {
+			"name": "Capietto",
+			"flag": "fr", 
+			"car": "RPM #85",
+			"results": ["DNF",9]
+		}
+	]
+}
