@@ -1,0 +1,106 @@
+{
+"rules":{
+	"pointSystem": [25,20,16,13,11,10,9,8,7,6,5,4,3,2,1],
+	"eventRaces": 2,
+	"settings": [
+		{"desc": "Schedule", "value": "Every other Thursday, 22:00 CET/CEST"},
+		{"desc": "Format", "value": "Two races per event, single quali (same starting grid)"},
+		{"desc": "Qualifying session", "value": "20 mins"},
+		{"desc": "Race Distance", "value": "55 mins + 1 lap"},
+		{"desc": "Strategy", "value": "One mandatory stop"}
+	]
+},
+
+"events":[
+	{"date": "27‑May", "flag": "de", "track": "Oschersleben", "laps": ""},
+	{"date": "24‑Jun", "flag": "nl", "track": "Zandvoort", "laps": ""},
+	{"date": "8‑Jul", "flag": "de", "track": "Norisring", "laps": ""},
+	{"date": "5‑Aug", "flag": "de", "track": "Nurburgring", "laps": ""},
+	{"date": "19‑Aug", "flag": "de", "track": "Lausitzring", "laps": ""},
+	{"date": "9‑Sep", "flag": "de", "track": "Sachsenring", "laps": ""},
+	{"date": "23‑Sep", "flag": "at", "track": "Red Bull Ring", "laps": ""},
+	{"date": "21‑Oct", "flag": "de", "track": "Hockenheim", "laps": ""}
+],
+
+"drivers":[{
+		"name": "Preining",
+		"flag": "at",
+		"car": "#91",
+		"results": [11, 3, 7, 2, 12, 1, 3, 5, 15, 4, 2, 4, 6, 3, 1, 1]
+	}, {
+		"name": "Bortolotti",
+		"flag": "it",
+		"car": "#92",
+		"results": [8, 6, 4, 11, 6, 4, 1, "DNS", 2, 1, 9, 1, 9, 21, 5, 2]
+	}, {
+		"name": "Feller",
+		"flag": "ch",
+		"car": "#7",
+		"results": [4, 7, 15, 1, 8, 14, 4, 6, 7, 2, 4, 6, 3, 15, 4, 9]
+	}, {
+		"name": "S Linde",
+		"flag": "za",
+		"car": "#1",
+		"results": ["Ret", 11, 2, 10, 1, 3, 7, 17, 5, 13, 6, "Ret", 13, 2, 20, 4]
+	}, {
+		"name": "Rast",
+		"flag": "de",
+		"car": "#33",
+		"results": [5, "Ret", "", "", 2, 2, 20, 19, 8, 11, 8, 8, 4, 1, "Ret", 3]
+	}, {
+		"name": "Stolz",
+		"flag": "de",
+		"car": "#4",
+		"results": ["Ret", "Ret", 11, 3, "Ret", 10, 15, 13, 6, 3, 1, 2, 7, "Ret", 8, 7]
+	}, {
+		"name": "Olsen",
+		"flag": "no",
+		"car": "#90",
+		"results": [10, 4, 16, 9, 3, 6, 5, "Ret", 12, 5, 7, "Ret", 10, 5, 2, 12]
+	}, {
+		"name": "K Linde",
+		"flag": "za",
+		"car": "#3",
+		"results": [6, "Ret", 12, 6, 21, 5, 8, 20, 3, 8, 5, 13, 1, "Ret", 6, 25]
+	}, {
+		"name": "Auer",
+		"flag": "at",
+		"car": "#22",
+		"results": [16, 10, 6, "Ret", 4, 11, 2, 3, 4, 6, "Ret", 15, 15, 11, 15, 8]
+	}, {
+		"name": "Engel",
+		"flag": "de",
+		"car": "#48",
+		"results": [13, 14, 1, 5, 7, 9, 12, 4, 13, "Ret", "Ret", "Ret", 5, 12, 17, 5]
+	}, {
+		"name": "Perera",
+		"flag": "fr",
+		"car": "#94",
+		"results": [1, 12, 3, 13, 11, 12, 23, 10, "Ret", "Ret", 11, 3, 19, 13, 14, 14]
+	}, {
+		"name": "Heinrich",
+		"flag": "de",
+		"car": "#75",
+		"results": [7, 9, "Ret", "Ret", 10, 7, 19, 2, "DSQ", "Ret", 12, "Ret", 2, 16, 10, 6]
+	}, {
+		"name": "Wittmann",
+		"flag": "de",
+		"car": "#11",
+		"results": ["Ret", 18, 5, 4, 9, 13, 6, 15, 10, 10, 18, 12, 8, 4, 9, 17]
+	}, {
+		"name": "Aitken",
+		"flag": "gb",
+		"car": "#14",
+		"results": [3, 17, "", "", 17, 20, 22, 18, 1, 7, "Ret", "Ret2", 20, 8, 7, 10]
+	}, {
+		"name": "Güven",
+		"flag": "tr",
+		"car": "#24",
+		"results": [20, "Ret", 13, 7, 5, 8, "Ret", "WD", 16, "Ret", 3, "Ret", 11, 7, "Ret", 11]
+	}, {
+		"name": "Vermeulen",
+		"flag": "nl",
+		"car": "#69",
+		"results": [15, 16, "Ret", "Ret", 20, 21, 10, 8, 9, 9, 10, 5, "DSQ", 9, 11, 23]
+}]
+}

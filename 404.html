@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Formula Regional European Championship by Alpine is a multi-event, Formula Regional open-wheel single seater motor racing championship held across Europe. The championship features a mix of professional and amateur drivers, competing in Formula Regional cars that conform to the FIA Formula Regional regulations for the championship.">
+	<meta name="description" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.">
 	<title>Formula F</title>
 	<link href="/res/favicon.ico" rel="icon" type="image/x-icon">
 	<!-- https://github.com/legacy-icons/famfamfam-flags -->
@@ -76,7 +76,8 @@
 	<h1>Welcome</h1>
 	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-	<select class="form-select float-end w-auto py-1" id="seasons"></select>
+	<select class="form-select float-end w-auto py-1 ms-1" id="seasons"></select>
+	<select class="form-select float-end w-auto py-1 ms-1" id="leagues"></select>
 	<h2>Standings</h2>
 	<div class="table-responsive" id="expandable">
 		<table class="table table-hover mb-0" id="standings"><thead><tr></tr></thead><tbody></tbody></table>
@@ -93,11 +94,21 @@
 	<dl class="row" id="settings"></dl>
 </main>
 <script type="text/javascript">
+	const seasons = {
+		"Formula Regional": {
+			2023: {path: "/data/season2.json"},
+			2022: {path: "/data/season.json"}
+		},
+		"DTM": { 
+			2023: {path: "/data/season3.json"}
+		}
+	};
+
 	const countryFlag = id => id ? `<span class="flag ${id} d-inline-block"></span> ` : "";
 	const colorKey = pos => pos < 4 ? (pos < 3 ? (pos < 2 ? "#EEB" : "#EEE") : "#DCB") : "#DED";
 	const button = (link, text) => `<a role="button" href="${link}" target="_blank">${text}</a>`;
 
-	function printSeason(season) {
+	function printSeason(season, league, year) {
 		fetch(season.path).then(response => response.json()).then((data) => {
 			let table = document.getElementById("standings");
 			let thead = document.createElement("tr");
@@ -157,32 +168,54 @@
 			}
 			document.getElementById("settings").replaceWith(settings);
 		});
-		document.title = `${season.label} – Formula F`;
-		for (o of document.getElementById("seasons").options) o.selected = o.textContent==season.label;
+		document.title = `${year} ${league} – Formula F`;
+		for (o of document.getElementById("seasons").options) o.selected = o.textContent==year;
+		for (o of document.getElementById("leagues").options) o.selected = o.textContent==league;
 	}
 
-	const seasons = {
-		2023: {label: "2023 Season", path: "/data/season2.json"},
-		2022: {label: "2022 Season", path: "/data/season.json"}
-	};
-
-	let select = document.getElementById("seasons");
-	for (s in seasons) {
-		select.innerHTML = `<option value="${s}">${seasons[s].label}</option>` + select.innerHTML;
+	function printSelectSeason(league) {
+		let select = document.getElementById("seasons");
+		select.innerHTML = "";
+		for (year in seasons[league]) {
+			select.innerHTML = `<option value="${year}">${year}</option>` + select.innerHTML;
+		}
+		select.replaceWith(select.cloneNode(true)); // remove listeners
+		document.getElementById("seasons").addEventListener("change", event => {
+			let year = event.target.value;
+			printSeason(seasons[league][year], league, year);
+			history.pushState({}, null, `/${league}/${year}`);
+		});
 	}
-	select.addEventListener("change", event => {
-		printSeason(seasons[event.target.value]);
-		history.pushState({}, null, "/season/" + event.target.value);
+
+	let selectLeague = document.getElementById("leagues");
+	selectLeague.innerHTML = "";
+	for (league in seasons) {
+		selectLeague.innerHTML += `<option value="${league}">${league}</option>`;
+	}
+	selectLeague.addEventListener("change", event => {
+		let league = event.target.value;
+		let year = Math.max(...Object.keys(seasons[league]));
+		printSelectSeason(league);
+		printSeason(seasons[league][year], league, year);
+		history.pushState({}, null, `/${league}/${year}`);
 	});
 
-	["load", "popstate"].forEach(event => {
-		window.addEventListener(event, deed => {
-			let path = document.location.pathname.split("/");
-			if (path[1] == "season" && seasons.hasOwnProperty(path[2])) {
-				printSeason(seasons[path[2]]);
+	["load", "popstate"].forEach(e => {
+		window.addEventListener(e, event => {
+			let league, year, path = document.location.pathname.split("/").map(x => decodeURIComponent(x));
+			if (seasons.hasOwnProperty(path[1]))  {
+				league = path[1];
+				if (seasons[path[1]].hasOwnProperty(path[2])) {
+					year = path[2];
+				} else {
+					year = Math.max(...Object.keys(seasons[league]));
+				}
 			} else {
-				printSeason(seasons[Math.max(...Object.keys(seasons))]);
+				league = Object.keys(seasons)[0];
+				year = Math.max(...Object.keys(seasons[league]));
 			}
+			printSelectSeason(league);
+			printSeason(seasons[league][year], league, year);
 		});
 	});
 </script>
