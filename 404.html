@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Formula Regional European Championship by Alpine is a multi-event, Formula Regional open-wheel single seater motor racing championship held across Europe. The championship features a mix of professional and amateur drivers, competing in Formula Regional cars that conform to the FIA Formula Regional regulations for the championship.">
 	<title>Formula F</title>
+	<link href="/res/favicon.ico" rel="icon" type="image/x-icon">
 	<!-- https://github.com/legacy-icons/famfamfam-flags -->
 	<link href="/res/famfamfam-flags.min.css" rel="stylesheet">
 	<!-- https://getbootstrap.com/docs/5.1/getting-started/introduction/ -->
@@ -167,7 +168,7 @@
 
 	let select = document.getElementById("seasons");
 	for (s in seasons) {
-		select.innerHTML += `<option value="${s}">${seasons[s].label}</option>`;
+		select.innerHTML = `<option value="${s}">${seasons[s].label}</option>` + select.innerHTML;
 	}
 	select.addEventListener("change", event => {
 		printSeason(seasons[event.target.value]);
